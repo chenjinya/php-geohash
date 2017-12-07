@@ -1,0 +1,2 @@
+# php-geohash
+simple geohash
