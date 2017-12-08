@@ -30,7 +30,7 @@ class GeoHash {
         $decs = $this->base32ToDecs($base32);
         $bin  = $this->decsToBin($decs);
         list($binLng, $binLat) = $this->binSeparate($bin);
-        return [$binLng, $binLat];
+        return [$this->binDecode($binLng, self::LNG_MIN, self::LNG_MAX), $this->binDecode($binLat, self::LAT_MIN, self::LAT_MAX)];
     }
 
     public function binOperation($bin, $op){
@@ -175,9 +175,12 @@ class GeoHash {
 
         $binLng = "";
         $binLat = "";
-        for($i = 0 ;$i < $len; $i += 2) {
-            $binLng .= $bin[$i];
-            $binLat .= $bin[$i + 1];
+        $switch = true;
+        for($i = 0 ;$i < $len; $i ++) {
+            if($switch) $binLng .= $bin[$i];
+            else $binLat .= $bin[$i];
+            $switch = !$switch;
+
         }
         return [
             $binLng, $binLat

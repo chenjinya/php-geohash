@@ -31,41 +31,10 @@ t("neighbors test:");
 $neighbors = $instance->neighbors($geohash);
 var_export($neighbors);
 
+t("decode test:");
+
+var_export($instance->decode($geohash));
+
 t("bound test:");
 
 var_export($instance->neighbors('zzzzzz'));
-
-t("decode test:");
-
-$precision = 30;
-$binLng = $instance->binEncode($lng, $instance::LNG_MIN, $instance::LNG_MAX, $precision);
-$binLat = $instance->binEncode($lat, $instance::LAT_MIN, $instance::LAT_MAX, $precision);
-
-//var_dump([$binLng, $binLat]);
-
-$binCombine = $instance->binMerge($binLng, $binLat);
-
-//var_dump([$binCombine]);
-$arrDecs = $instance->binToDecs($binCombine);
-
-//var_dump([$arrDecs]);
-
-$geoHash = $instance->decsToBase32($arrDecs);
-
-//var_dump([$geoHash]);
-
-
-$decs = $instance->base32ToDecs($geoHash);
-
-//var_dump($decs);
-
-$bin = $instance->decsToBin($decs);
-//var_dump([$bin]);
-
-$binSeparate = $instance->binSeparate($bin);
-//var_dump([$binSeparate]);
-
-var_dump([
-    $instance->binDecode($binSeparate[0], $instance::LNG_MIN, $instance::LNG_MAX),
-    $instance->binDecode($binSeparate[1], $instance::LAT_MIN, $instance::LAT_MAX)
-]);
