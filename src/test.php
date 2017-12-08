@@ -15,18 +15,27 @@ $lat = "40.0639144661348";
 $instance = new GeoHash();
 
 t("sample:");
+
 var_dump([
     "lng" => $lng,
     "lat" => $lat,
 ]);
+
 t("encode test:");
+
 $geohash = $instance->encode($lng, $lat);
 var_export($geohash);
+
+t("neighbors test:");
+
+$neighbors = $instance->neighbors($geohash);
+var_export($neighbors);
+
 t("bound test:");
+
 var_export($instance->neighbors('zzzzzz'));
 
 t("decode test:");
-
 
 $precision = 30;
 $binLng = $instance->binEncode($lng, $instance::LNG_MIN, $instance::LNG_MAX, $precision);
