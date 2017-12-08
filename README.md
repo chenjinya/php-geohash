@@ -19,7 +19,7 @@ Base| 32|0|1|2|3|4|5|6|7|8|9|b|c|d|e|f|g
 
 ## Errors
 
-|geohash| length|lat| bits|lng| bits|lat| error|lng |error|km| error|
+|geohash| length|lat bits|lng bits|lat error|lng error|km error|
 --|--|--|--|--|--|--|--|--|--|--|--
 1|2|3|±23|±23|±2500
 |2|5|5 |±2.8| ±5.6| ±630|
